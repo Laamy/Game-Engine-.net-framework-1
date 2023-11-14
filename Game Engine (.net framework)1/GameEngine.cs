@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -18,7 +19,11 @@ internal class GameEngine
     /// <summary>
     /// The games target framerate
     /// </summary>
-    private int targetFPS = 144;
+    public int targetFPS
+    {
+        get => (int)(1000 / ClientInstance.Instance.GuiData.Rate);
+        set => ClientInstance.Instance.GuiData.Rate = 1000f / value;
+    }
 
     // sdl stuff
     private RenderWindow window;
@@ -33,21 +38,27 @@ internal class GameEngine
 
         window.SetActive();
 
-        long targetTicksPerFrame = TimeSpan.TicksPerSecond / targetFPS;
-        long prevTicks = DateTime.Now.Ticks;
+        ClientInstance Instance = ClientInstance.Instance;
+
+        targetFPS = 144;
+        long prevMilSec = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
 
         while (window.IsOpen)
         {
-            long currTicks = DateTime.Now.Ticks;
-            long elapsedTicks = currTicks - prevTicks;
+            long currMilSec = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+            long elapsedMilSec = currMilSec - prevMilSec;
 
-            if (elapsedTicks >= targetTicksPerFrame)
+            if (elapsedMilSec >= Instance.GuiData.Rate)
             {
-                ClientInstance.Instance.GuiData.Size = window.Size;
+                Instance.GuiData.Size = window.Size;
+                Instance.GuiData.DeltaTime_M = elapsedMilSec;
+                Instance.GuiData.DeltaTime = 1f / elapsedMilSec;
 
-                prevTicks = currTicks;
+                prevMilSec = currMilSec;
                 OnUpdate(window); // redraw window
             }
+
+            window.DispatchEvents(); // handle window events
 
             Thread.Sleep(1);
         }

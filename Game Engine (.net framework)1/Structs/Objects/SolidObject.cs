@@ -1,10 +1,9 @@
 ﻿#region Includes
 
 using System.Collections.Generic;
-using System.Windows.Forms;
+
 using SFML.Graphics;
 using SFML.System;
-using static System.Net.Mime.MediaTypeNames;
 
 #endregion
 
@@ -13,7 +12,6 @@ internal class SolidObject : Object
     // base
     public Vector2f Size { get; set; }
     public Color Color { get; set; }
-    public List<string> Tags { get; set; }
     public float Rotation { get; set; }
     public Anchor Anchor { get; set; } = Anchor.TopLeft;
 
