@@ -7,6 +7,7 @@ using SFML.System;
 internal class GuiData
 {
     public float Rate { get; set; }
+    public int Framerate { get; set; }
 
     public Vector2u Size { get; set; }
 

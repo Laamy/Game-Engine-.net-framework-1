@@ -86,7 +86,7 @@ internal class Game : GameEngine
         // manually update fps counter
         (Instance.Level.GetTag("FpsCounter")[0] as SolidText).Text =
             $"{Instance.GuiData.DeltaTime_M}ms\r\n" +
-            $"0/{1000 / Instance.GuiData.Rate}\r\n";
+            $"{Instance.GuiData.Framerate}/{1000 / Instance.GuiData.Rate}\r\n";
 
         Instance.Level.Draw(ctx); // draw scene
 

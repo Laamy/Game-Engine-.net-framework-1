@@ -1,29 +1,21 @@
 ﻿#region Includes
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Threading;
-using System.Windows.Forms;
 
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
+
 using View = SFML.Graphics.View;
 
 #endregion
 
 internal class GameEngine
 {
-    /// <summary>
-    /// The games target framerate
-    /// </summary>
-    public int targetFPS
-    {
-        get => (int)(1000 / ClientInstance.Instance.GuiData.Rate);
-        set => ClientInstance.Instance.GuiData.Rate = 1000f / value;
-    }
+    private int counter = 0;
 
     // sdl stuff
     private RenderWindow window;
@@ -40,33 +32,55 @@ internal class GameEngine
 
         ClientInstance Instance = ClientInstance.Instance;
 
-        targetFPS = 144;
-        long prevMilSec = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+        TargetFps = 144;
+        CSFML_Stopwatch stopwatch = CSFML_Stopwatch.StartNew();
+        long prevSec = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
 
         while (window.IsOpen)
         {
-            long currMilSec = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-            long elapsedMilSec = currMilSec - prevMilSec;
+            long elapsedTicks = stopwatch.Elapsed.Ticks;
+            long desired = (long)(TimeSpan.TicksPerMillisecond * Instance.GuiData.Rate);
 
-            if (elapsedMilSec >= Instance.GuiData.Rate)
+            if (elapsedTicks >= desired)
             {
+                stopwatch.Restart();
+
+                long currSec = DateTime.Now.Ticks / TimeSpan.TicksPerSecond;
+
+                if (currSec - prevSec >= 1)
+                {
+                    Instance.GuiData.Framerate = counter;
+                    counter = 0;
+
+                    prevSec = currSec;
+                }
+
                 Instance.GuiData.Size = window.Size;
-                Instance.GuiData.DeltaTime_M = elapsedMilSec;
-                Instance.GuiData.DeltaTime = 1f / elapsedMilSec;
+                Instance.GuiData.DeltaTime_M = elapsedTicks / TimeSpan.TicksPerMillisecond;
+                Instance.GuiData.DeltaTime = 1f / elapsedTicks;
 
-                prevMilSec = currMilSec;
                 OnUpdate(window); // redraw window
+                counter++;
+
+                window.DispatchEvents(); // handle window events
+
+                CSFML_Stopwatch.Sleep((int)Math.Floor(Instance.GuiData.Rate));
             }
-
-            window.DispatchEvents(); // handle window events
-
-            Thread.Sleep(1);
         }
     }
 
     protected virtual void OnUpdate(RenderWindow ctx) { }// draw event
 
     #region Easy Game Properties
+
+    /// <summary>
+    /// The games target framerate
+    /// </summary>
+    public int TargetFps
+    {
+        get => (int)(1000 / ClientInstance.Instance.GuiData.Rate);
+        set => ClientInstance.Instance.GuiData.Rate = 1000f / value;
+    }
 
     public Vector2u Size
     {
