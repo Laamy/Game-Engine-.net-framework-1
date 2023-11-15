@@ -1,5 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Security;
 using System.Threading;
 
 internal class CSFML_Stopwatch
@@ -100,12 +103,10 @@ internal class CSFML_Stopwatch
     private static extern uint timeEndPeriod(uint uPeriod);
 
     /// <summary>
-    /// Sleep without the limitation of thread.sleep
-    /// IMPORTANT: This function changes the system-wide timer resolution for the duration
-    /// of the sleep, which may impact system-wide timing and power consumption. Use judiciously.
+    /// Sleep without the limitation of thread.sleep (SecurityWarning)
     /// </summary>
     /// <param name="milliseconds"></param>
-    [Obsolete("")]
+    [SecurityWarning("This function changes the system-wide timer resolution for the duration of the sleep, which may impact system-wide timing and power consumption. Use judiciously.")]
     public static void Sleep(int milliseconds)
     {
         timeBeginPeriod((uint)milliseconds);

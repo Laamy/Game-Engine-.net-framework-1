@@ -81,6 +81,7 @@
     <Compile Include="GameEngine.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Structs\Attribute\SecurityWarningAttribute.cs" />
     <Compile Include="Utils\Stopwatch.cs" />
     <Compile Include="Structs\ClientInstance.cs" />
     <Compile Include="Structs\FontRepository.cs" />
