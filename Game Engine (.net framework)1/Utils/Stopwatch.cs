@@ -93,8 +93,6 @@ internal class CSFML_Stopwatch
         elapsedTime += TimeSpan.FromMilliseconds(milliseconds);
     }
 
-
-
     [DllImport("winmm.dll", SetLastError = true)]
     private static extern uint timeBeginPeriod(uint uPeriod);
 
@@ -103,11 +101,13 @@ internal class CSFML_Stopwatch
 
     /// <summary>
     /// Sleep without the limitation of thread.sleep
+    /// IMPORTANT: This function changes the system-wide timer resolution for the duration
+    /// of the sleep, which may impact system-wide timing and power consumption. Use judiciously.
     /// </summary>
     /// <param name="milliseconds"></param>
+    [Obsolete("")]
     public static void Sleep(int milliseconds)
     {
-
         timeBeginPeriod((uint)milliseconds);
         Thread.Sleep(milliseconds);
         timeBeginPeriod((uint)milliseconds);
