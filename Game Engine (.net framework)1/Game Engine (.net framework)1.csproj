@@ -257,21 +257,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="csfml-audio.dll">
+    <Content Include="csfml-audio.dll" />
+    <None Include="csfml-graphics.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="csfml-graphics.dll">
+    </None>
+    <Content Include="csfml-system.dll" />
+    <None Include="csfml-window.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="csfml-system.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="csfml-window.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="openal32.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </None>
+    <Content Include="openal32.dll" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
