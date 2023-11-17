@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 [AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = true)]
 [ComVisible(true)]
-internal sealed class SecurityWarningAttribute : Attribute
+public sealed class SecurityWarningAttribute : Attribute
 {
     public string Message { get; }
 

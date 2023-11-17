@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 #endregion
 
-internal class Object
+public class Object
 {
     // base
     public Vector2f Position { get; set; }

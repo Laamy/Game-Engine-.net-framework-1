@@ -4,7 +4,7 @@ using SFML.System;
 
 #endregion
 
-internal class GuiData
+public class GuiData
 {
     public float Rate { get; set; }
     public int Framerate { get; set; }

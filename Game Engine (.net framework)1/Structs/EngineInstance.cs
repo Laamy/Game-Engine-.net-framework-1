@@ -1,6 +1,6 @@
-﻿internal class ClientInstance
+﻿public class EngineInstance
 {
-    public static ClientInstance Instance { get; private set; } = new ClientInstance();
+    public static EngineInstance Instance { get; private set; } = new EngineInstance();
 
     public Level Level = new Level();
     public FontRepository FontRepos = new FontRepository();

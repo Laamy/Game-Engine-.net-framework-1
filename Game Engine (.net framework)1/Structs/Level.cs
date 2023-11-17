@@ -6,7 +6,7 @@ using SFML.Graphics;
 
 #endregion
 
-internal class Level
+public class Level
 {
     public List<Object> children = new List<Object>();
 

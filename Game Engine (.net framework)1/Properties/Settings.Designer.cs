@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Game_Engine__.net_framework_1.Properties {
+namespace AsteroidEngine.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

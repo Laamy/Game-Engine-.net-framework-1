@@ -1,7 +1,7 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 
-internal class SolidText : Object
+public class SolidText : Object
 {
     public Color Color { get; set; }
     public string Text { get; set; }
@@ -12,7 +12,7 @@ internal class SolidText : Object
 
     public override void Draw(RenderWindow e)
     {
-        Vector2u dim = ClientInstance.Instance.GuiData.Size;
+        Vector2u dim = EngineInstance.Instance.GuiData.Size;
 
         Text text = new Text(Text, Font, Size);
 

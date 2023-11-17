@@ -1,11 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Security;
 using System.Threading;
 
-internal class CSFML_Stopwatch
+public class CSFML_Stopwatch
 {
     private DateTime startTime;
     private TimeSpan elapsedTime;

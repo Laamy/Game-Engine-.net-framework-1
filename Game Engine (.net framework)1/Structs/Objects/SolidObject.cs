@@ -7,7 +7,7 @@ using SFML.System;
 
 #endregion
 
-internal class SolidObject : Object
+public class SolidObject : Object
 {
     // base
     public Vector2f Size { get; set; }
@@ -17,7 +17,7 @@ internal class SolidObject : Object
 
     public override void Draw(RenderWindow e)
     {
-        Vector2u dim = ClientInstance.Instance.GuiData.Size;
+        Vector2u dim = EngineInstance.Instance.GuiData.Size;
 
         RectangleShape shape = new RectangleShape(Size);
 

@@ -7,9 +7,9 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C47F39AB-ADBB-44E0-B480-CFE1908AF794}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Game_Engine__.net_framework_1</RootNamespace>
-    <AssemblyName>Game Engine %28.net framework%291</AssemblyName>
+    <OutputType>Library</OutputType>
+    <RootNamespace>AsteroidEngine</RootNamespace>
+    <AssemblyName>AsteroidEngine</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -75,6 +75,9 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Costura, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -227,7 +230,6 @@
   <ItemGroup>
     <Compile Include="Game.cs" />
     <Compile Include="GameEngine.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -236,7 +238,7 @@
     </Compile>
     <Compile Include="Structs\Attribute\SecurityWarningAttribute.cs" />
     <Compile Include="Utils\Stopwatch.cs" />
-    <Compile Include="Structs\ClientInstance.cs" />
+    <Compile Include="Structs\EngineInstance.cs" />
     <Compile Include="Structs\FontRepository.cs" />
     <Compile Include="Structs\Level.cs" />
     <Compile Include="Structs\GuiData.cs" />

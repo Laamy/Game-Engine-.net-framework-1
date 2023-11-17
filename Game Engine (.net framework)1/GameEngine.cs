@@ -13,7 +13,7 @@ using View = SFML.Graphics.View;
 
 #endregion
 
-internal class GameEngine
+public class GameEngine
 {
     private int counter = 0;
 
@@ -30,7 +30,7 @@ internal class GameEngine
 
         window.SetActive();
 
-        ClientInstance Instance = ClientInstance.Instance;
+        EngineInstance Instance = EngineInstance.Instance;
 
         TargetFps = 144;
         CSFML_Stopwatch stopwatch = CSFML_Stopwatch.StartNew();
@@ -78,8 +78,8 @@ internal class GameEngine
     /// </summary>
     public int TargetFps
     {
-        get => (int)(1000 / ClientInstance.Instance.GuiData.Rate);
-        set => ClientInstance.Instance.GuiData.Rate = 1000f / value;
+        get => (int)(1000 / EngineInstance.Instance.GuiData.Rate);
+        set => EngineInstance.Instance.GuiData.Rate = 1000f / value;
     }
 
     public Vector2u Size

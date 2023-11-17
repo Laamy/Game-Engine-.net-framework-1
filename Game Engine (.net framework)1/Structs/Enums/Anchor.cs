@@ -1,4 +1,4 @@
-﻿internal enum Anchor
+﻿public enum Anchor
 {
     /// <summary>
     /// Anchor to the center of the screen (aka nothing/all)

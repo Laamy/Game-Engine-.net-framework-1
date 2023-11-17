@@ -6,7 +6,7 @@ using SFML.Graphics;
 
 #endregion
 
-internal class FontRepository
+public class FontRepository
 {
     private static Dictionary<string, Font> _fonts = new Dictionary<string, Font>()
     {

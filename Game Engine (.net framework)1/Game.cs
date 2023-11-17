@@ -2,13 +2,12 @@
 
 using SFML.Graphics;
 using SFML.System;
-using System.Collections.Generic;
 
 #endregion
 
 internal class Game : GameEngine
 {
-    public ClientInstance Instance = ClientInstance.Instance;
+    public EngineInstance Instance = EngineInstance.Instance;
 
     public Game()
     {

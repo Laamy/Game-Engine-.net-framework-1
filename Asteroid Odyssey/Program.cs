@@ -1,8 +1,5 @@
-﻿using System;
-
-internal class Program
+﻿class Program
 {
-    [STAThread]
     static void Main(string[] args)
     {
         new Game();
