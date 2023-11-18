@@ -2,12 +2,14 @@
 
 using SFML.Graphics;
 using SFML.System;
+using SFML.Window;
 
 #endregion
 
 internal class Game : GameEngine
 {
     public EngineInstance Instance = EngineInstance.Instance;
+    public SolidObjectMovementProxy Controller;
 
     public Game()
     {
@@ -23,11 +25,25 @@ internal class Game : GameEngine
                 Text =
                     $"0ms\r\n" +
                     $"0/0\r\n",
-                Tags = { "FpsCounter" }
+                Tags = { "FpsCounter" },
+                Anchor = Anchor.TopLeft
             });
         }
 
+        {
+            SolidObject localPlayer = new SolidObject()
+            {
+                Position = new Vector2f(100, 100),
+                Size = new Vector2f(20, 20),
+                Color = Color.Red,
+                Tags = { "LocalPlayer" },
+                Anchor = Anchor.TopLeft
+            };
 
+            Instance.Level.children.Add(localPlayer);
+
+            Controller = new SolidObjectMovementProxy(localPlayer);
+        }
 
         // we've finished so start the app
         Start();
@@ -41,6 +57,8 @@ internal class Game : GameEngine
         (Instance.Level.GetTag("FpsCounter")[0] as SolidText).Text =
             $"{Instance.GuiData.DeltaTime_M}ms\r\n" +
             $"{Instance.GuiData.Framerate}/{1000 / Instance.GuiData.Rate}\r\n";
+
+        Controller.Update(Instance.GuiData.DeltaTime);
 
         Instance.Level.Draw(ctx); // draw scene
 

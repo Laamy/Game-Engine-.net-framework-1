@@ -237,6 +237,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Structs\Attribute\SecurityWarningAttribute.cs" />
+    <Compile Include="Structs\IUpdateable.cs" />
     <Compile Include="Utils\Stopwatch.cs" />
     <Compile Include="Structs\EngineInstance.cs" />
     <Compile Include="Structs\FontRepository.cs" />
