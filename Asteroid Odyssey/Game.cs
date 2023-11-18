@@ -25,19 +25,26 @@ internal class Game : GameEngine
                 Text =
                     $"0ms\r\n" +
                     $"0/0\r\n",
-                Tags = { "FpsCounter" },
-                Anchor = Anchor.TopLeft
+                Tags = { "FpsCounter" }
             });
         }
 
         {
+
+            Instance.Level.children.Add(new SolidObject()
+            {
+                Position = new Vector2f(100, 150),
+                Size = new Vector2f(20, 150),
+                Color = Color.Red,
+                Tags = { "LocalPlayer" }
+            });
+
             SolidObject localPlayer = new SolidObject()
             {
                 Position = new Vector2f(100, 100),
                 Size = new Vector2f(20, 20),
                 Color = Color.Red,
-                Tags = { "LocalPlayer" },
-                Anchor = Anchor.TopLeft
+                Tags = { "LocalPlayer" }
             };
 
             Instance.Level.children.Add(localPlayer);

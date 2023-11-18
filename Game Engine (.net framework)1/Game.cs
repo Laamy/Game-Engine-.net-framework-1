@@ -5,6 +5,7 @@ using SFML.System;
 
 #endregion
 
+// game-engine usage test example
 internal class Game : GameEngine
 {
     public EngineInstance Instance = EngineInstance.Instance;
