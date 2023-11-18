@@ -35,8 +35,7 @@ internal class Game : GameEngine
             {
                 Position = new Vector2f(100, 150),
                 Size = new Vector2f(20, 150),
-                Color = Color.Red,
-                Tags = { "LocalPlayer" }
+                Color = Color.Red
             });
 
             SolidObject localPlayer = new SolidObject()
