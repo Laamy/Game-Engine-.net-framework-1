@@ -2,24 +2,19 @@
 
 using SFML.Graphics;
 using SFML.System;
+using SFML.Window;
+using System;
 
 #endregion
 
 internal class Game : GameEngine
 {
     public EngineInstance Instance = EngineInstance.Instance;
-
-    // TODO: move these to engine instance
     public SolidObjectMovementProxy Controller;
-
-    private FastNoise starPerlinX = new FastNoise(0);
-    private FastNoise starPerlinY = new FastNoise(0);
 
     public Game()
     {
         // lets add some test objects
-        starPerlinX.SetNoiseType(FastNoise.NoiseType.Perlin);
-        starPerlinY.SetNoiseType(FastNoise.NoiseType.Perlin);
 
         // debug stuff
         {
@@ -34,6 +29,29 @@ internal class Game : GameEngine
                     $"0/0\r\n",
                 Tags = { "FpsCounter" }
             });
+        }
+
+        // load stars
+        {
+            const int NumStars = 6000;
+            float starSize = 2;
+
+            Random ran = new Random(0);
+
+            for (int i = 0; i < NumStars; i++)
+            {
+                float x = ran.Next(0, 1920);
+                float y = ran.Next(0, 1080);
+
+                Console.WriteLine($"Creating star at {x} {y}");
+
+                Instance.Level.children.Add(new SolidTile()
+                {
+                    Position = new Vector2f(x, y),
+                    Size = new Vector2f(2, 2),
+                    Color = Color.White
+                });
+            }
         }
 
         // load ship
@@ -52,20 +70,18 @@ internal class Game : GameEngine
                         case '#': // BOXES that you can collide with
                             Instance.Level.children.Add(new SolidObject()
                             {
-                                Position = new Vector2f(50 + (y * 48), 50 + (x * 48)),
-                                Size = new Vector2f(48, 48),
-                                //Color = new Color(0x292929FF)
-                                TextureID = "Data\\Assets\\blocks\\tunson_wall.png"
+                                Position = new Vector2f(50 + (y * 40), 50 + (x * 40)),
+                                Size = new Vector2f(40, 40),
+                                Color = new Color(0x292929FF)
                             });
                             break;
 
                         case '-': // tiles DO NOT have collision
                             Instance.Level.children.Add(new SolidTile()
                             {
-                                Position = new Vector2f(50 + (y * 48), 50 + (x * 48)),
-                                Size = new Vector2f(48, 48),
-                                //Color = new Color(0x202020FF)
-                                TextureID = "Data\\Assets\\blocks\\tunson_floor.png"
+                                Position = new Vector2f(50 + (y * 40), 50 + (x * 40)),
+                                Size = new Vector2f(40, 40),
+                                Color = new Color(0x202020FF)
                             });
                             break;
                     }

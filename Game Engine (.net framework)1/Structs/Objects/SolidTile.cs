@@ -1,13 +1,11 @@
 ﻿#region Includes
 
-using System.Collections.Generic;
-
 using SFML.Graphics;
 using SFML.System;
 
 #endregion
 
-public class SolidObject : Object
+public class SolidTile : Object
 {
     // base
     public Vector2f Size { get; set; }

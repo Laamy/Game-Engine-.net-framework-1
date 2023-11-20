@@ -1,8 +1,9 @@
 ﻿#region Includes
 
 using System.Collections.Generic;
-
+using System.Management.Instrumentation;
 using SFML.Graphics;
+using SFML.System;
 
 #endregion
 
@@ -27,9 +28,18 @@ public class Level
 
     public void Draw(RenderWindow e)
     {
-        // loop over the scene and draw u fuckign retard
-        foreach (Object child in children)
+        EngineInstance instance = EngineInstance.Instance;
+
+        Vector2u dims = instance.GuiData.Size;
+
+        // loop over the scene and draw dumbass
+        for (int i = 0; i < children.Count; ++i) 
         {
+            Object child = children[i];
+
+            if (child.Position.X > dims.X || child.Position.Y > dims.Y)
+                continue;
+
             child.Draw(e);
         }
     }

@@ -22,15 +22,19 @@ public class GameEngine
 
     public void Start()
     {
+        EngineInstance Instance = EngineInstance.Instance;
+
         // sdl renderer
         VideoMode mode = new VideoMode(800, 600);
+
         window = new RenderWindow(mode, "Game Engine");
+
+        Instance.GuiData.Size = window.Size;
+
         window.Closed += (s, e) => window.Close();
         window.Resized += (s, e) => Size = new Vector2u(e.Width, e.Height);
 
         window.SetActive();
-
-        EngineInstance Instance = EngineInstance.Instance;
 
         TargetFps = 144;
         CSFML_Stopwatch stopwatch = CSFML_Stopwatch.StartNew();
